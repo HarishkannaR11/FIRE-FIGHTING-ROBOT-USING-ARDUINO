@@ -11,6 +11,62 @@ This robot autonomously detects fire using IR-based flame sensors and navigates 
 > 🎯 Objective: To minimize human intervention in hazardous environments and demonstrate real-time fire-response automation using embedded systems.
 
 ---
+## 🔧 Libraries Used
+### `Servo.h`
+- This library is used to control the **servo motor** responsible for sweeping the water to extinguish fire.
+- Enables precise control over angular position (0° to 180°).
+
+---## 
+🧠 Pin Configuration
+
+| Pin | Component               | Purpose                              |
+|-----|--------------------------|--------------------------------------|
+| 1–3 | Flame Sensors            | Detects fire/flame in the surroundings |
+| 6–9 | DC Motors (via L293D)    | Controls robot movement               |
+| 10  | Water Pump               | Activates water for fire extinguishing |
+| 11  | Servo Motor              | Sweeps water directionally            |
+| 12  | Ultrasonic Trigger (pingTrigPin) | Sends pulse to detect distance |
+| 13  | Ultrasonic Echo (pingEchoPin)   | Receives pulse for distance calc. |
+
+> `pinMode()` is used in `setup()` to configure the above pins as `INPUT` or `OUTPUT` as needed.
+
+---
+
+## 🔁 Main Loop Logic
+
+### 1. **Obstacle Detection**
+- Uses ultrasonic sensor (`pingTrigPin`, `pingEchoPin`)
+- Measures distance to obstacles.
+- If obstacle detected within threshold, robot stops or changes path.
+
+### 2. **Fire Detection**
+- Continuously reads flame sensors (pins 1–3).
+- If any sensor detects fire, the robot:
+  - Stops movement.
+  - Executes `put_off_fire()`.
+
+### 3. **Movement Control**
+- Based on inputs:
+  - Moves forward if no obstacle/fire.
+  - Stops and turns if obstacle is near.
+  - Stops and extinguishes if fire is detected.
+- Controlled via L293D Motor Driver connected to pins 6–9.
+
+---
+
+## ⚙️ System Overview
+
+- **Autonomous** firefighting and navigation.
+- **Sensors** for environment monitoring (ultrasonic + flame).
+- **Actuators** for mobility and fire suppression (motors + pump + servo).
+- Controlled using **Arduino-based microcontroller** logic.
+
+---
+
+## 🧠 Future Enhancements
+- Add Blynk/IoT monitoring.
+- Integrate temperature sensor for heat profiling.
+- GPS for location tracking during patrol.
 
 ## 🚀 Features
 
