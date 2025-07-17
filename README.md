@@ -59,7 +59,7 @@ This robot autonomously detects fire using IR-based flame sensors and navigates 
 
 ### 1. Software Requirements
 - [Arduino IDE](https://www.arduino.cc/en/software)
-- Embedded C / Arduino language
+- Embedded C++ / Arduino language
 - USB A-B cable for uploading code
 
 ### 2. Uploading Code
